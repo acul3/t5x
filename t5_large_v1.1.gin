@@ -1,0 +1,19 @@
+include 't5x/examples/t5/t5_1_1/large.gin'
+include 't5x/configs/runs/pretrain.gin'
+
+# Register necessary SeqIO Tasks/Mixtures.
+import t5.data.mixtures
+
+# Register necessary SeqIO Tasks/Mixtures.
+import task
+
+VOCABULARY = @seqio.SentencePieceVocabulary()
+seqio.SentencePieceVocabulary.sentencepiece_model_file = "gs://t5-kopi/t5/vocabs/kopi_32000_bpe.sp.model"
+seqio.SentencePieceVocabulary.extra_ids = 100
+
+MIXTURE_OR_TASK_NAME = "KoPI_span_corruption_tfds"
+TASK_FEATURE_LENGTHS = {"inputs": 512, "targets": 512}
+TRAIN_STEPS = 500000
+DROPOUT_RATE = 0.0
+#BATCH_SIZE = 256
+NUM_EMBEDDINGS = 32128  # 128 * math.ceil((32000 + 100) / 128) for TPU efficiency
