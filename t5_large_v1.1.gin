@@ -11,6 +11,8 @@ VOCABULARY = @seqio.SentencePieceVocabulary()
 seqio.SentencePieceVocabulary.sentencepiece_model_file = "gs://t5-kopi/t5/vocabs/kopi_32000_bpe.sp.model"
 seqio.SentencePieceVocabulary.extra_ids = 100
 
+INITIAL_CHECKPOINT_PATH = "gs://t5-kopi/t5/model_large/checkpoint_160000"
+
 MIXTURE_OR_TASK_NAME = "KoPI_span_corruption_tfds"
 TASK_FEATURE_LENGTHS = {"inputs": 512, "targets": 512}
 TRAIN_STEPS = 500000
